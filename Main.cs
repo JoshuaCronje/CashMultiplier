@@ -13,15 +13,15 @@ public class Main : BloonsTD6Mod
     private static readonly ModSettingDouble Multiplier = new(.5)
     {
         displayName = "Multiplier",
-        description = "The multiplier for all cash gained, cannot go above 1",
-        max = 1,
+        description = "The multiplier for all cash gained",
+        max = 9999999,
     };
     
     [HarmonyPatch(typeof(Simulation), nameof(Simulation.AddCash))]
     [HarmonyPrefix]
     static void Simulation_AddCash(ref double c, Simulation.CashSource source)
     {
-        if (Multiplier > 1)
+        if (Multiplier > 9999999)
         {
             c /= Multiplier;    //troll face
         }
